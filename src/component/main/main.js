@@ -2,7 +2,6 @@ import React from 'react';
 import { StyleSheet, Text,ImageBackground, View ,Image, Button, Alert,TouchableOpacity} from 'react-native';
 import {HomeStack} from './src/router';
 import styles from './src/style/style';
-import { StackNavigator } from 'react-navigation';
 
 
 class BackgroundImage extends React.Component {
@@ -16,7 +15,11 @@ class BackgroundImage extends React.Component {
     }
 }
 
-class Home extends React.Component {
+export default class Main extends React.Component {
+    gotoCate() {
+        const { navigator } = this.props;
+        navigator.push({ name: "Screen_Cate"})
+    }
   render() {
     return (
       <BackgroundImage style={styles.container} >
@@ -27,7 +30,7 @@ class Home extends React.Component {
 
           <View style ={styles.content}>
             <TouchableOpacity style={styles.button}
-                onPress={() => this.props.navigation.navigate({'Screen_Cate'})
+                onpress = {this.gotoCate.bind(this)}
             >
               <Text style ={styles.textbutton}>Danh mục</Text>
             </TouchableOpacity>
@@ -51,12 +54,6 @@ class Home extends React.Component {
 
       </BackgroundImage>
     );
-  }
-}
-
-export default class App extends React.Component {
-  render() {
-    return <HomeStack />;
   }
 }
 
